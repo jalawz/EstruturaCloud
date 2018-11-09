@@ -2,7 +2,7 @@ package com.produto.service;
 
 import java.util.List;
 
-import com.produto.models.ProdutoDto;
+import com.produto.modelsDto.ProdutoDto;
 
 
 public interface ProdutoService {

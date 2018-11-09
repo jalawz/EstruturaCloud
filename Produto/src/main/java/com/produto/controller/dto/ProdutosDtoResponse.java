@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.produto.models.ProdutoDto;
+import com.produto.modelsDto.ProdutoDto;
 
 public class ProdutosDtoResponse implements Serializable {
 

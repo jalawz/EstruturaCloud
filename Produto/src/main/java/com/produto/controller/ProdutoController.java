@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.produto.controller.dto.ProdutoDtoResponse;
 import com.produto.controller.dto.ProdutosDtoResponse;
-import com.produto.models.ProdutoDto;
+import com.produto.modelsDto.ProdutoDto;
 import com.produto.service.ProdutoService;
 
 @RestController
@@ -28,9 +29,9 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoDto> find(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<ProdutoDtoResponse> find(@PathVariable(value = "id") Long id) {
 		ProdutoDto produto = this.produtoService.find(id);
-		return ResponseEntity.ok(produto);
+		return ResponseEntity.ok(new ProdutoDtoResponse(produto));
 	}
 
 	public ResponseEntity<ProdutoDto> update(@PathVariable(value = "id") Long id, Error error) {

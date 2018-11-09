@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.produto.domain.ProdutoDomain;
-import com.produto.models.ProdutoDto;
+import com.produto.modelsDto.ProdutoDto;
 import com.produto.repository.ProdutoRepository;
 
 @Service
