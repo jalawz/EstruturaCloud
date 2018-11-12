@@ -2,6 +2,7 @@ package com.produto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,14 +41,22 @@ public class ProdutoServiceImp implements ProdutoService {
 
 	@Override
 	public ProdutoDto find(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<ProdutoDomain> produtoDomain = this.produtoRepository.findById(id);
+		
+		System.out.println(produtoDomain);
+		ProdutoDto produtoDto = new ProdutoDto();
+	
+		return produtoDto;
 	}
 
 	@Override
 	public ProdutoDto create(ProdutoDto produtoDto) {
-		// TODO Auto-generated method stub
-		return null;
+		ProdutoDomain pd = new ProdutoDomain();
+		pd.setNome(produtoDto.getNome());
+		
+		this.produtoRepository.save(pd);
+		
+		return produtoDto;
 	}
 
 	@Override
