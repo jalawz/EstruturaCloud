@@ -9,6 +9,14 @@ public class ProdutoDto implements Serializable {
 	private Long id;
 	private String nome;
 
+	
+	public ProdutoDto() {}
+	
+	public ProdutoDto(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -24,6 +32,7 @@ public class ProdutoDto implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	@Override
 	public String toString() {

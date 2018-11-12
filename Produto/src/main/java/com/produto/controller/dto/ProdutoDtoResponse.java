@@ -11,9 +11,13 @@ public class ProdutoDtoResponse implements Serializable {
 	
 	private ProdutoDto produto = new ProdutoDto();
 	
+	
+	public ProdutoDtoResponse() {}
+			
 	public ProdutoDtoResponse(ProdutoDto produto) {
 		this.produto = produto;
 	}
+	
 
 	public ProdutoDto getProduto() {
 		return produto;
@@ -22,6 +26,7 @@ public class ProdutoDtoResponse implements Serializable {
 	public void setProduto(ProdutoDto produto) {
 		this.produto = produto;
 	}
+	
 
 	@Override
 	public String toString() {

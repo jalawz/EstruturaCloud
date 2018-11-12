@@ -2,9 +2,12 @@ package com.produto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.produto.domain.ProdutoDomain;
 import com.produto.modelsDto.ProdutoDto;
@@ -40,25 +43,53 @@ public class ProdutoServiceImp implements ProdutoService {
 
 	@Override
 	public ProdutoDto find(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<ProdutoDomain> produtoDomain = this.produtoRepository.findById(id);
+
+		ProdutoDto dto = new ProdutoDto();
+
+		produtoDomain.ifPresent(pd -> {
+			dto.setId(pd.getId());
+			dto.setNome(pd.getNome());
+		});
+
+		return dto;
 	}
 
 	@Override
 	public ProdutoDto create(ProdutoDto produtoDto) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ProdutoDomain produtoDomain = new ProdutoDomain();
+		
+		produtoDomain.setNome(produtoDto.getNome());
+		
+		produtoDomain = this.produtoRepository.save(produtoDomain);
+
+		produtoDto.setId(produtoDomain.getId());
+		produtoDto.setNome(produtoDomain.getNome());
+
+		return produtoDto;
 	}
 
 	@Override
 	public ProdutoDto update(Long id, ProdutoDto produto) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Optional<ProdutoDomain> produtoDomain = this.produtoRepository.findById(id);
+
+		ProdutoDto dto = new ProdutoDto();
+		produtoDomain.ifPresent(pd -> {
+			dto.setId(pd.getId());
+			dto.setNome((produto.getNome() != null)?produto.getNome():pd.getNome());
+
+			this.produtoRepository.save(pd);
+		});
+
+		return dto;
 	}
 
 	@Override
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		this.produtoRepository.deleteById(id);
 
 	}
 
